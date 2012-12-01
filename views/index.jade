@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .hero-unit
+    h1 Get Flow!
+  .container
+    .row
+      h2#clock 00:00
+      #start.btn.btn-primary Start
+      #stop.btn.btn-warning(style='display:none;') Stop
+      hr
+    .row
+      .progress.current
+        .bar
+      hr
+    .row.history
+    .row
+      #reset.btn Reset
