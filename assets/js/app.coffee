@@ -26,7 +26,6 @@ class Timer
 
   saveHistory: ->
     @renderSession timeago @startTime
-    localStorage[dateKey(now())] or= ""
     localStorage[dateKey(now())] += timeago(@startTime) + " "
 
   renderSession: (session)->
@@ -73,6 +72,7 @@ class RestTimer
 
 $ ->
   timer = new Timer()
+  localStorage[dateKey(now())] or= ""
   sessions = localStorage[dateKey(now())].trim().split(" ")
   sessions.forEach timer.renderSession
 
