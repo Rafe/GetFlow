@@ -2,6 +2,7 @@ express = require 'express'
 app = express()
 
 app.set 'view engine', 'jade'
+app.use express.favicon()
 app.use express.static("public")
 app.use require('connect-assets')()
 
