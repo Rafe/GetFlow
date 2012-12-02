@@ -44,8 +44,8 @@ class Timer
 
 class RestTimer
   constructor: (time)->
-    @time = Math.round(time / 5)
-    @originTime = @time
+    @startTime = now()
+    @restTime = Math.round(time / 4)
 
   start: ()->
     @updateLoop($('.current .bar')) unless @updater?
@@ -60,14 +60,15 @@ class RestTimer
     $('#stop').hide()
 
   saveHistory: ->
-    $('.history').prepend("<h2>Rest #{displayTime @originTime}</h2>")
+    $('.history').prepend("<h2>Rest #{displayTime @restTime }</h2>")
 
   updateLoop: (bar)->
     clock = $('#clock')
     @updater = setInterval =>
-      clock.text(displayTime @time--)
-      bar.css('width', "#{(@time / @originTime) * 100 }%")
-      @stop() if @time < 0
+      time = @restTime - (timeago @startTime)
+      clock.text(displayTime time)
+      bar.css('width', "#{(time / @restTime) * 100 }%")
+      @stop() if time <= 0
     , 1000
 
 $ ->
